@@ -21,9 +21,9 @@ class MyApp extends StatelessWidget {
       // home: logInView(),
       // home: signUpView(),
       // home: start(),
-      // home: SplashPage(),
+      home: SplashPage(),
       // home: successful(),
-      home: home(),
+      // home: home(),
       // home: product(),  
     );
   }
