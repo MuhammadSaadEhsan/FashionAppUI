@@ -63,6 +63,15 @@ flutter:
     - images/logoB.png
     - images/logoW.png
     - images/newpic.jpeg
+    - images/l11.jpg
+    - images/l12.jpg
+    - images/l13.gif
+    - images/l14.jpg
+    - images/l15.jpg
+    - images/l21.jpg
+    - images/l22.jpg
+    - images/l23.jpg
+    - images/l24.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

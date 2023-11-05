@@ -1,5 +1,5 @@
-import 'package:ecommerceapp/loginscreen.dart';
-import 'package:ecommerceapp/signupscreen.dart';
+import 'package:ecommerceapp/screens/loginscreen.dart';
+import 'package:ecommerceapp/screens/signupscreen.dart';
 import 'package:flutter/material.dart';
 
 class start extends StatelessWidget {

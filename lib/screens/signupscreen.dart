@@ -1,4 +1,4 @@
-import 'package:ecommerceapp/successfulLogin.dart';
+import 'package:ecommerceapp/screens/successfulLogin.dart';
 import 'package:flutter/material.dart';
 
 class signUpView extends StatelessWidget {

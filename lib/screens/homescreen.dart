@@ -1,9 +1,17 @@
-// import 'dart:ffi';
-import 'dart:ui';
-import 'package:ecommerceapp/product.dart';
+import 'package:ecommerceapp/productData.dart';
+import 'package:ecommerceapp/screens/productDetail.dart';
+import 'package:ecommerceapp/store.dart';
 import 'package:flutter/material.dart';
 
-class home extends StatelessWidget {
+class home extends StatefulWidget {
+  @override
+  State<home> createState() => _homeState();
+}
+
+class _homeState extends State<home> {
+  var productList1 = store.list1;
+  var productList2 = store.list2;
+
   @override
   Widget build(BuildContext context) {
     return HomeTab();
@@ -19,6 +27,7 @@ class _HomeTabState extends State<HomeTab> {
   int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
+    //------------------scaffold----------------
     return Scaffold(
       body: _buildContent(_currentIndex),
       bottomNavigationBar: BottomNavigationBar(
@@ -82,7 +91,10 @@ class _HomeTabState extends State<HomeTab> {
   }
 }
 
+//----------------------tab 1 --------------------
 class Tab1Content extends StatelessWidget {
+  var productList1 = store.list1;
+  var productList2 = store.list2;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -90,8 +102,18 @@ class Tab1Content extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              margin: EdgeInsets.fromLTRB(22, 60, 350, 0),
-              child: Icon(Icons.menu),
+              margin: EdgeInsets.fromLTRB(25, 15, 25, 0),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Icon(Icons.menu),
+                    Image.asset(
+                      "images/logoB.png",
+                      height: 100,
+                      width: 100,
+                    ),
+                    Icon(Icons.search),
+                  ]),
             ),
             Container(
               margin: const EdgeInsets.symmetric(vertical: 30, horizontal: 10),
@@ -99,32 +121,27 @@ class Tab1Content extends StatelessWidget {
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment:CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(12.0),
+                        padding: const EdgeInsets.only(left: 22, bottom: 10),
                         child: Row(
                           children: [
                             Text(
-                          "Shoes",
-                          style:
-                              TextStyle(fontSize: 24, fontFamily: "Gilroy-Black"),
-                        ),
+                              "Featured Products",
+                              style: TextStyle(
+                                  fontSize: 24, fontFamily: "Gilroy-Black"),
+                            ),
                           ],
                         ),
                       ),
                       Row(
                         children: [
-                          getProductCard(
-                            context,
-                              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9noaExXALZrp6bZ2dCn-kRm6HZjFjebg2AAcUZOOKpsYiVXUxWfh8d2zDpzox7L_iIyE&usqp=CAU'),
-                          getProductCard(
-                            context,
-                              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2wn2yByNGNSJjO0Jz-rCZ4HG_GnZcLSZp3bTvnKXENWIYhMlvkVCvjOwRJ23640Ww5ro&usqp=CAU'),
-                          getProductCard(
-                            context,
-                              'https://contents.mediadecathlon.com/p2155519/675a901c012338809f9e6dda7dd6ea6b/p2155519.jpg?format=auto&quality=70&f=650x0'),
+                          getProductCard(context, productList2[0]),
+                          getProductCard(context, productList2[1]),
+                          getProductCard(context, productList2[2]),
+                          getProductCard(context, productList2[3]),
                         ],
                       ),
                     ],
@@ -134,13 +151,15 @@ class Tab1Content extends StatelessWidget {
             ),
             Container(
               alignment: Alignment.topLeft,
-              child: Container(
-                margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
-                child: Text(
-                          "New Arrivals",
-                          style:
-                              TextStyle(fontSize: 24, fontFamily: "Gilroy-Black"),
-                        ),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 31, bottom: 5),
+                child: Container(
+                  // margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                  child: Text(
+                    "New Arrivals",
+                    style: TextStyle(fontSize: 24, fontFamily: "Gilroy-Black"),
+                  ),
+                ),
               ),
             ),
             Container(
@@ -149,15 +168,10 @@ class Tab1Content extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    getsmallProductCard(
-                      context,
-                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbihf2VfbldZj9xxdsAk9QJMC5-JJjlobylFj_onEoo1Dqa0V45mVCTJuQLrdFXN-jC0Q&usqp=CAU'),
-                    getsmallProductCard(
-                      context,
-                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBU8_x25KSq5yTinQHI1uvQSNjsFabLd4ntEm2zCW54FsuR_kPX3al7pZhyARNy13b7t0&usqp=CAU'),
-                    getsmallProductCard(
-                      context,
-                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBB_1tG00CqIl6fCABk4VXQbBsAo_DYHzxfUEihtfJ1onaAjkmt_1Lixj0gUwfF-r6_Z8&usqp=CAU'),
+                    getsmallProductCard(context, productList1[0]),
+                    getsmallProductCard(context, productList1[1]),
+                    getsmallProductCard(context, productList1[2]),
+                    getsmallProductCard(context, productList1[3]),
                   ],
                 ),
               ),
@@ -165,12 +179,11 @@ class Tab1Content extends StatelessWidget {
             Container(
               alignment: Alignment.topLeft,
               child: Container(
-                margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                margin: EdgeInsets.fromLTRB(20, 10, 0, 0),
                 child: const Text(
-                          "Popular",
-                          style:
-                              TextStyle(fontSize: 24, fontFamily: "Gilroy-Black"),
-                        ),
+                  "Popular",
+                  style: TextStyle(fontSize: 24, fontFamily: "Gilroy-Black"),
+                ),
               ),
             ),
             Row(children: [
@@ -202,20 +215,21 @@ class Tab1Content extends StatelessWidget {
                   Container(
                     margin: const EdgeInsets.fromLTRB(20, 0, 38, 0),
                     child: const Text(
-                          "Ghia Borghini",
-                          style:
-                              TextStyle(fontSize: 20, fontFamily: "Gilroy-Black"),
-                        ),
+                      "Ghia Borghini",
+                      style:
+                          TextStyle(fontSize: 20, fontFamily: "Gilroy-Black"),
+                    ),
                   ),
                   Container(
-                      margin: const EdgeInsets.fromLTRB(2, 5, 0, 0),
-                      child: Text(
-                        "RHW Roise 1 Sandals",
-                        style: TextStyle(
-                            fontSize: 15,
-                            fontFamily: "Gilroy-SemiBold",
-                            color: Colors.grey),
-                      ),),
+                    margin: const EdgeInsets.fromLTRB(2, 5, 0, 0),
+                    child: Text(
+                      "RHW Roise 1 Sandals",
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontFamily: "Gilroy-SemiBold",
+                          color: Colors.grey),
+                    ),
+                  ),
                 ],
               )
             ]),
@@ -225,31 +239,51 @@ class Tab1Content extends StatelessWidget {
     );
   }
 }
+
 //--------------------------------------------tab2--------------------------------
 class Tab2Content extends StatelessWidget {
+  var cartList = store.cartList;
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       height: double.infinity,
       color: Colors.white,
-      child: const Center(
+      child: Center(
         child: Column(
           children: [
-            SizedBox(height: 40,),
+            SizedBox(
+              height: 40,
+            ),
             Text(
-                            "My orders",
-                            style:
-                                TextStyle(fontSize: 20, fontFamily: "Gilroy-Black"),
-                          ),
-            SizedBox(height: 20,),
+              "My orders",
+              style: TextStyle(fontSize: 20, fontFamily: "Gilroy-Black"),
+            ),
+            SizedBox(
+              height: 20,
+            ),
             Text(
-                        "No Orders yet",
-                        style: TextStyle(
-                            fontSize: 15,
-                            fontFamily: "Gilroy-SemiBold",
-                            color: Colors.grey),
-                      ),
+              "Thank you for your orders",
+              style: TextStyle(
+                  fontSize: 15,
+                  fontFamily: "Gilroy-SemiBold",
+                  color: Colors.grey),
+            ),
+            Expanded(
+              child: ListView.builder(
+                  itemCount: cartList.length,
+                  itemBuilder: (BuildContext context, index) {
+                    return ListTile(
+                      leading: CircleAvatar(
+                          backgroundImage: AssetImage(
+                        cartList[index].image,
+                      )),
+                      title: Text(cartList[index].name),
+                      subtitle: Text(cartList[index].detail),
+                      trailing: Text(cartList[index].price),
+                    );
+                  }),
+            )
           ],
         ),
       ),
@@ -318,8 +352,7 @@ class Tab3Content extends StatelessWidget {
                   title: Text("Ethan Johnson"),
                   subtitle: Row(
                     children: [
-                      Text(
-                          " It's a park ofancient trees, their branches "),
+                      Text(" It's a park ofancient trees, their branches "),
                     ],
                   ),
                   leading: CircleAvatar(
@@ -561,30 +594,35 @@ Widget createListTile(String title, IconData iconData) {
   );
 }
 
-getProductCard(context,String url) {
-  return ElevatedButton(
-     style: ButtonStyle(
-    backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+getProductCard(context, productData productData) {
+  return InkWell(
+    // style: ButtonStyle(
+    // backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
     // You can add more styles here as needed, like text style, padding, etc.
-  ),
-    onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) =>product()));
-                  },
+    onTap: () {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (BuildContext context) => product(productData)));
+    },
     child: Card(
       margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
       color: Colors.white,
       child: Container(
         height: 200,
-        width: 250,
+        width: 200,
         child: Stack(
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(15),
-              child: Image.network(
-                url,
-                width: 250,
-                height: 200,
-                fit: BoxFit.cover,
+              // child: Image.network(
+              //   productData.image,
+              //   height: 200,
+              //   width: 250,
+              //   fit: BoxFit.cover,
+              // ),
+              child: Image.asset(
+                productData.image,
               ),
             ),
             Positioned(
@@ -611,43 +649,63 @@ getProductCard(context,String url) {
   );
 }
 
-getsmallProductCard(BuildContext context,String url) {;
-  return ElevatedButton(
-     style: ButtonStyle(
-    backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+getsmallProductCard(BuildContext context, productData productData) {
+  return InkWell(
+    // style: ButtonStyle(
+    // backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
     // You can add more styles here as needed, like text style, padding, etc.
-  ),
-    onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) =>product()));
-                  },
+    onTap: () {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (BuildContext context) => product(productData)));
+    },
     child: Card(
       margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
       color: Colors.white,
       child: Container(
-        height: 200,
+        height: 350,
         width: 200,
-        child: Stack(
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(15),
-              child: Image.network(
-                url,
-                width: 250,
-                height: 200,
-                fit: BoxFit.cover,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(15),
+                // child: Image.network(
+                //   productData.image,
+                //   width: 200,
+                //   height: 200,
+                //   fit: BoxFit.cover,
+                // ),
+                child: Image.asset(productData.image),
               ),
-            ),
-            Positioned(
-              bottom: 10,
-              left: 10,
-              child: Container(
-                padding: const EdgeInsets.all(10),
-                decoration: const BoxDecoration(
-                    // Transparent background
-                    ),
+              SizedBox(
+                height: 10,
               ),
-            ),
-          ],
+              Text(
+                productData.name,
+                style: TextStyle(fontFamily: "Gilroy-Black", fontSize: 20),
+              ),
+              Text(
+                productData.detail,
+                style: TextStyle(fontFamily: "Gilroy-Medium"),
+              ),
+              Text(
+                productData.price,
+                style: TextStyle(fontFamily: "Gilroy-Black", fontSize: 20),
+              ),
+              // Positioned(
+              //   bottom: 10,
+              //   left: 10,
+              //   child: Container(
+              //     padding: const EdgeInsets.all(10),
+              //     decoration: const BoxDecoration(
+              //         // Transparent background
+              //         ),
+              //   ),
+              // ),
+            ],
+          ),
         ),
       ),
     ),
