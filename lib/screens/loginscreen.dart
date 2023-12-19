@@ -1,25 +1,52 @@
+import 'package:ecommerceapp/screens/addProduct.dart';
 import 'package:ecommerceapp/screens/successfulLogin.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class logInView extends StatelessWidget {
-  const logInView({super.key});
+  logInView({super.key});
 
-  @override
+  TextEditingController emailController = new TextEditingController();
+  TextEditingController passwordController = new TextEditingController();
+
   Widget build(BuildContext context) {
+  @override
+    login() async {
+      try {
+        UserCredential userCredential = await FirebaseAuth.instance
+            .signInWithEmailAndPassword(
+                email: emailController.text, password: passwordController.text);
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (BuildContext context) => successful()));
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'weak-password') {
+          print('The password provided is too weak.');
+        } else if (e.code == 'email-already-in-use') {
+          print('The account already exists for that email.');
+        }
+      } catch (e) {
+        print(e);
+      }
+    }
+
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.only(top: 5,left: 25,right: 25),
+        padding: EdgeInsets.only(top: 5, left: 25, right: 25),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             Container(
               height: 130,
               width: 130,
               child: Image.asset("images/logoB.png"),
             ),
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             Container(
                 alignment: Alignment.topLeft,
                 child: Text(
@@ -38,7 +65,9 @@ class logInView extends StatelessWidget {
                       fontSize: 15,
                       color: Colors.grey),
                 )),
-            SizedBox(height: 30,),
+            SizedBox(
+              height: 30,
+            ),
             Container(
                 alignment: Alignment.topLeft,
                 child: const Text(
@@ -50,22 +79,24 @@ class logInView extends StatelessWidget {
                 )),
             Container(
               height: 30,
-              child: const TextField(
+              child: TextField(
+                controller: emailController,
                 // textAlign: TextAlign.start,
                 cursorColor: Colors.black,
                 decoration: InputDecoration(
-                  contentPadding: EdgeInsets.only(right: 50,bottom: 21),
+                  contentPadding: EdgeInsets.only(right: 50, bottom: 21),
                   hintText: "your email address",
-                  focusedBorder:UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black)
-                  ),
-                  enabledBorder:UnderlineInputBorder(
-                    borderSide: BorderSide(color: Color.fromARGB(255, 230, 230, 230))
-                  ),
+                  focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black)),
+                  enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Color.fromARGB(255, 230, 230, 230))),
                 ),
               ),
             ),
-            SizedBox(height: 23,),
+            SizedBox(
+              height: 23,
+            ),
             Container(
                 alignment: Alignment.topLeft,
                 child: const Text(
@@ -77,58 +108,83 @@ class logInView extends StatelessWidget {
                 )),
             Container(
               height: 30,
-              child: const TextField(
+              child: TextField(
+                controller: passwordController,
                 obscureText: true,
                 // textAlign: TextAlign.start,
                 cursorColor: Colors.black,
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.only(right: 50,bottom: 21),
+                decoration: const InputDecoration(
+                  contentPadding: EdgeInsets.only(right: 50, bottom: 21),
                   hintText: "your password",
-                  focusedBorder:UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black)
-                  ),
-                  enabledBorder:UnderlineInputBorder(
-                    borderSide: BorderSide(color: Color.fromARGB(255, 230, 230, 230))
-                  ),
+                  focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black)),
+                  enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Color.fromARGB(255, 230, 230, 230))),
                 ),
               ),
             ),
-            SizedBox(height: 40,),
+            const SizedBox(
+              height: 40,
+            ),
             Container(
               padding: EdgeInsets.only(bottom: 15),
               child: SizedBox(
                 height: 40,
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: (){
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) =>successful()));
+                  onPressed: () {
+                    // Navigator.pushReplacement(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (BuildContext context) => successful()));
+                    login();
                   },
-                  child: Text("Login",style: TextStyle(fontFamily: "Gilroy-Bold",fontSize: 15,color: Colors.white,),
+                  child: Text(
+                    "Login",
+                    style: TextStyle(
+                      fontFamily: "Gilroy-Bold",
+                      fontSize: 15,
+                      color: Colors.white,
+                    ),
                   ),
                   style: ElevatedButton.styleFrom(
                     shape: StadiumBorder(),
                     backgroundColor: Colors.black,
-                  ),  
+                  ),
                 ),
               ),
             ),
-            Container(child: Text("or"),),
-            SizedBox(height: 12,),
+            Container(
+              child: Text("or"),
+            ),
+            SizedBox(
+              height: 12,
+            ),
             Container(
               margin: EdgeInsets.only(bottom: 15),
               child: SizedBox(
                 height: 40,
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: (){
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) =>successful()));
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) => addProduct()));
                   },
-                  child: Text("Continue with Facebook",style: TextStyle(fontFamily: "Gilroy-Bold",fontSize: 15,color: Colors.white,),
+                  child: Text(
+                    "Add new Products",
+                    style: TextStyle(
+                      fontFamily: "Gilroy-Bold",
+                      fontSize: 15,
+                      color: Colors.white,
+                    ),
                   ),
                   style: ElevatedButton.styleFrom(
                     shape: StadiumBorder(),
                     backgroundColor: Color.fromARGB(255, 0, 46, 132),
-                  ),  
+                  ),
                 ),
               ),
             ),
@@ -138,15 +194,24 @@ class logInView extends StatelessWidget {
                 height: 40,
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: (){
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) =>successful()));
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) => successful()));
                   },
-                  child: Text("Continue with Google",style: TextStyle(fontFamily: "Gilroy-Bold",fontSize: 15,color: Colors.black,),
+                  child: Text(
+                    "Continue with Google",
+                    style: TextStyle(
+                      fontFamily: "Gilroy-Bold",
+                      fontSize: 15,
+                      color: Colors.black,
+                    ),
                   ),
                   style: ElevatedButton.styleFrom(
                     shape: StadiumBorder(),
                     backgroundColor: Colors.white,
-                  ),  
+                  ),
                 ),
               ),
             ),
@@ -156,15 +221,21 @@ class logInView extends StatelessWidget {
                 height: 40,
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: (){
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) =>successful()));
+                  onPressed: () {
+                    login();
                   },
-                  child: Text("Continue with Apple",style: TextStyle(fontFamily: "Gilroy-Bold",fontSize: 15,color: Colors.black,),
+                  child: Text(
+                    "Continue with Apple",
+                    style: TextStyle(
+                      fontFamily: "Gilroy-Bold",
+                      fontSize: 15,
+                      color: Colors.black,
+                    ),
                   ),
                   style: ElevatedButton.styleFrom(
                     shape: StadiumBorder(),
                     backgroundColor: Colors.white,
-                  ),  
+                  ),
                 ),
               ),
             ),

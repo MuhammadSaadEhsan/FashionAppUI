@@ -46,14 +46,14 @@ class store {
         'images/l23.jpg'),
     productData(
         "Fancy",
-        "latest bags for you",
+        "latest bags for women",
         "180",
         "new nike collection shoes to change your life",
         "\$299",
         'images/l21.jpg'),
     productData(
       "Smart Shoes",
-      "joggers of your choice",
+      "joggers of your husband",
       "330",
       "new smart shoes for men with brilliant features",
       "\$250",

@@ -1,5 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerceapp/productData.dart';
+import 'package:ecommerceapp/screens/addProduct.dart';
+// import 'package:ecommerceapp/addProduct.dart';
 import 'package:ecommerceapp/store.dart';
+import 'package:ecommerceapp/utils/collection.dart';
 import 'package:flutter/material.dart';
 
 class product extends StatelessWidget {
@@ -9,6 +13,53 @@ class product extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+// =========================================
+    TextEditingController review_controller = TextEditingController();
+    TextEditingController name_controller = TextEditingController();
+    TextEditingController price_controller = TextEditingController();
+    TextEditingController shortdes_controller = TextEditingController();
+    TextEditingController image_controller = TextEditingController();
+    TextEditingController category_controller = TextEditingController();
+    // TextEditingController size_controller = TextEditingController();
+    // TextEditingController availablestock_controller = TextEditingController();
+    addNewProduct({productData}) async {
+      review_controller.text = "${productData.review}";
+      name_controller.text = "${productData.name}";
+      price_controller.text = "${productData.price}";
+      shortdes_controller.text = "${productData.desc}";
+      image_controller.text = "${productData.image}";
+      category_controller.text = "${productData.detail}";
+      // size_controller.text = "${productData.review}";
+      // category_controller.text = "${productData.name}";
+
+      var product = FirebaseFirestore.instance.collection(Collection.products);
+      await product.add({
+        // "id": id_controller.text,
+        "name": name_controller.text,
+        "price": price_controller.text,
+        "shortdescription": shortdes_controller.text,
+        "image": image_controller.text,
+        // "size": size_controller.text,
+        "category": category_controller.text,
+        "review": review_controller.text,
+      }).then((value) {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text("Product added successfully")));
+        // id_controller.text = "";
+        name_controller.text = "";
+        price_controller.text = "";
+        shortdes_controller.text = "";
+        image_controller.text = "";
+        // availablestock_controller.text = "";
+        // size_controller.text = "";
+        category_controller.text = "";
+      }).catchError((value) => ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text("failed to add : $value"))));
+    }
+
+
+
     int m = 1;
     return Scaffold(
       body: SingleChildScrollView(
@@ -286,7 +337,7 @@ class product extends StatelessWidget {
                 ),
                 //----------row4----------
                 SizedBox(
-                  height: 11,
+                  height: 26,
                 ),
                 Row(
                   children: [
@@ -307,7 +358,7 @@ class product extends StatelessWidget {
                       ]),
                     ),
                     SizedBox(
-                      width: 90,
+                      width: 110,
                     ),
                     Container(
                       height: 40,
@@ -318,6 +369,7 @@ class product extends StatelessWidget {
                       child: Center(
                         child: TextButton(
                           onPressed: () {
+                            addNewProduct(productData: products);
                             store.cartList.add(products);
                           },
                           child: Row(
