@@ -1,3 +1,6 @@
+import 'dart:ffi';
+
+import 'package:ecommerceapp/add_data.dart';
 import 'package:ecommerceapp/productData.dart';
 import 'package:ecommerceapp/screens/productDetail.dart';
 import 'package:ecommerceapp/store.dart';
@@ -25,10 +28,13 @@ class HomeTab extends StatefulWidget {
 
 class _HomeTabState extends State<HomeTab> {
   int _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
-    //------------------scaffold----------------
     return Scaffold(
+      //------------------------------------------------------
+
+      //-------------------------------------------------------
       body: _buildContent(_currentIndex),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
@@ -62,13 +68,12 @@ class _HomeTabState extends State<HomeTab> {
             ),
             label: "Tab 3",
           ),
-          // New tab added
           BottomNavigationBarItem(
             icon: Icon(
               Icons.person,
               color: Colors.black,
-            ), // Icon for the new tab
-            label: "Tab 4", // Label for the new tab
+            ),
+            label: "Tab 4",
           ),
         ],
       ),
@@ -101,12 +106,18 @@ class Tab1Content extends StatelessWidget {
       child: Container(
         child: Column(
           children: [
+            SizedBox(height: 40,),
             Container(
               margin: EdgeInsets.fromLTRB(25, 15, 25, 0),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Icon(Icons.menu),
+                    InkWell(
+                      onTap: () {
+                        // makedrawer();
+                      },
+                      child: Icon(Icons.menu),
+                    ),
                     Image.asset(
                       "images/logoB.png",
                       height: 100,
@@ -128,11 +139,11 @@ class Tab1Content extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 22, bottom: 10),
                         child: Row(
                           children: [
-                            Text(
-                              "Featured Products",
-                              style: TextStyle(
-                                  fontSize: 24, fontFamily: "Gilroy-Black"),
-                            ),
+                      Text(
+                        "Featured Products",
+                        style: TextStyle(
+                            fontSize: 24, fontFamily: "Gilroy-Black"),
+                      ),
                           ],
                         ),
                       ),
@@ -142,6 +153,12 @@ class Tab1Content extends StatelessWidget {
                           getProductCard(context, productList2[1]),
                           getProductCard(context, productList2[2]),
                           getProductCard(context, productList2[3]),
+                          getProductCard(context, productList2[4]),
+                          getProductCard(context, productList2[5]),
+                          getProductCard(context, productList2[6]),
+                          getProductCard(context, productList2[7]),
+                          getProductCard(context, productList2[8]),
+                          getProductCard(context, productList2[9]),
                         ],
                       ),
                     ],
@@ -172,7 +189,13 @@ class Tab1Content extends StatelessWidget {
                     getsmallProductCard(context, productList1[1]),
                     getsmallProductCard(context, productList1[2]),
                     getsmallProductCard(context, productList1[3]),
-                  ],
+                    getsmallProductCard(context, productList1[4]),
+                    getsmallProductCard(context, productList1[5]),
+                    getsmallProductCard(context, productList1[6]),
+                    getsmallProductCard(context, productList1[7]),
+                    getsmallProductCard(context, productList1[8]),
+                    getsmallProductCard(context, productList1[9]),
+                  ]
                 ),
               ),
             ),
@@ -283,7 +306,60 @@ class Tab2Content extends StatelessWidget {
                       trailing: Text(cartList[index].price),
                     );
                   }),
-            )
+            ),
+            Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: Container(
+                      width: 220,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(50),
+                        border: Border.all(color: Colors.white),
+                      ),
+                      child: Center(
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: ((context) => AddData())));
+                          },
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Icon(
+                                Icons.shopping_bag_outlined,
+                                color: Colors.white,
+                              ),
+                              SizedBox(
+                                width: 6,
+                              ),
+                              Text(
+                                "Proceed to payment",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontFamily: "Gilroy-Bold",
+                                    color: Colors.white),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
@@ -386,7 +462,7 @@ class Tab3Content extends StatelessWidget {
                   title: Text("Liam Brown"),
                   subtitle: Row(
                     children: [
-                      Text("Visitors can escape the urban hustle and find"),
+                      Text("Visitors can escape the urban hustle"),
                     ],
                   ),
                   leading: CircleAvatar(
@@ -437,7 +513,7 @@ class Tab3Content extends StatelessWidget {
                   title: Text("Sophia Wilson"),
                   subtitle: Row(
                     children: [
-                      Text("Visitors can escape the urban hustle and find"),
+                      Text("Visitors can escape the urban"),
                     ],
                   ),
                   leading: CircleAvatar(
@@ -453,7 +529,7 @@ class Tab3Content extends StatelessWidget {
                   title: Text("Mason Taylor"),
                   subtitle: Row(
                     children: [
-                      Text("Visitors can escape the urban hustle and find"),
+                      Text("escape the urban hustle and find"),
                     ],
                   ),
                   leading: CircleAvatar(
@@ -509,11 +585,8 @@ class Tab4Content extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(
                           12.0), // Match the radius to the outer border
-                      child: Image.network(
-                        'data:image/jpeg;base64,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', // Replace with your image URL
-                        fit: BoxFit
-                            .cover, // You can adjust the image fit as needed
-                      ),
+                      child: Image.asset("images/logoB.png")
+                        
                     ),
                   )
                 ],

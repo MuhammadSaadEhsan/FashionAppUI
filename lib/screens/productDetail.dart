@@ -1,11 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerceapp/productData.dart';
-import 'package:ecommerceapp/screens/addProduct.dart';
+// import 'package:ecommerceapp/screens/addProduct.dart';
 // import 'package:ecommerceapp/addProduct.dart';
 import 'package:ecommerceapp/store.dart';
 import 'package:ecommerceapp/utils/collection.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class product extends StatelessWidget {
   productData products;
   product(this.products, {super.key});
@@ -13,7 +14,6 @@ class product extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
 // =========================================
     TextEditingController review_controller = TextEditingController();
     TextEditingController name_controller = TextEditingController();
@@ -54,11 +54,10 @@ class product extends StatelessWidget {
         // availablestock_controller.text = "";
         // size_controller.text = "";
         category_controller.text = "";
+        // ignore: invalid_return_type_for_catch_error
       }).catchError((value) => ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text("failed to add : $value"))));
     }
-
-
 
     int m = 1;
     return Scaffold(
@@ -70,14 +69,15 @@ class product extends StatelessWidget {
               // height: 550,
               // width: 550,
               width: double.infinity,
-              child: Image.network(
-                products.image,
-              ),
+              // child: Image.network(
+              //   products.image,
+              // ),
+              child: Image.asset(products.image),
             ),
           ),
           Container(
             alignment: Alignment.topCenter,
-            height: 292,
+            height: 400,  //================250
             width: double.infinity,
             decoration: BoxDecoration(
                 color: Colors.white,
@@ -101,7 +101,7 @@ class product extends StatelessWidget {
                                 fontSize: 20, fontFamily: "Gilroy-Black"),
                           ),
                           SizedBox(
-                            height: 3,
+                            height: 1,  //--------------3
                           ),
                           Text(
                             products.detail,
@@ -178,7 +178,7 @@ class product extends StatelessWidget {
                               ),
                             ),
                             // alignment: Alignment.topLeft,
-                            height: 30,
+                            height: 30,  
                             width: 70,
                             decoration: BoxDecoration(
                                 color: Colors.grey.shade300,
@@ -189,7 +189,7 @@ class product extends StatelessWidget {
                           },
                         ),
                         SizedBox(
-                          height: 15,
+                          height: 15,   
                         ),
                         Text("Available in stock",
                             style: TextStyle(
@@ -199,7 +199,7 @@ class product extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  height: 4,
+                  height: 20,  ///////            2
                 ),
                 Container(
                   alignment: Alignment.topLeft,
@@ -295,8 +295,8 @@ class product extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(right: 15.0),
                         child: Container(
-                          height: 40,
-                          width: 40,
+                          height:40,
+                          width: 40, 
                           child: Center(
                               child: Text(
                             "41",
@@ -314,6 +314,7 @@ class product extends StatelessWidget {
                     ],
                   ),
                 ),
+                SizedBox(height: 15,),
                 //--------------------ROW3--------------------
                 Container(
                   alignment: Alignment.topLeft,
@@ -337,7 +338,7 @@ class product extends StatelessWidget {
                 ),
                 //----------row4----------
                 SizedBox(
-                  height: 26,
+                  height: 16,  //-----------------------------26
                 ),
                 Row(
                   children: [
@@ -358,10 +359,10 @@ class product extends StatelessWidget {
                       ]),
                     ),
                     SizedBox(
-                      width: 110,
+                      width: 100,
                     ),
                     Container(
-                      height: 40,
+                      height: 40, //----------------------------40----changed
                       width: 150,
                       decoration: BoxDecoration(
                           color: Colors.black,

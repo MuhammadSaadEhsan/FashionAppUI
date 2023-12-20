@@ -70,10 +70,21 @@ flutter:
     - images/l13.gif
     - images/l14.jpg
     - images/l15.jpg
+    - images/l16.jpg
+    - images/l17.jpg
+    - images/l18.jpg
+    - images/l19.jpg
+    - images/l110.jpg
     - images/l21.jpg
     - images/l22.jpg
     - images/l23.jpg
     - images/l24.jpg
+    - images/l25.jpg
+    - images/l26.jpg
+    - images/l27.jpg
+    - images/l28.jpg
+    - images/l29.jpg
+    - images/l210.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

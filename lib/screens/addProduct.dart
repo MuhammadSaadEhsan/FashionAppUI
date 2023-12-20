@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerceapp/productData.dart';
 import 'package:ecommerceapp/utils/collection.dart';
@@ -54,165 +52,167 @@ class addProduct extends StatelessWidget {
     }
 
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.only(top: 5, left: 25, right: 25),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-              height: 100,
-              width: 100,
-              child: Image.asset("images/logoB.png"),
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            Container(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  "Add Products",
-                  style: TextStyle(
-                    fontFamily: "Gilroy-Black",
-                    fontSize: 15,
-                  ),
-                )),
-            Container(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  "Add your latest product from your store to sell",
-                  style: TextStyle(
-                      fontFamily: "Gilroy-Medium",
-                      fontSize: 15,
-                      color: Colors.grey),
-                )),
-            SizedBox(
-              height: 15,
-            ),
-            Container(
-                height: 40,
-                child: TextField(
-                  controller: id_controller,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Enter your product id',
-                  ),
-                )),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-                height: 40,
-                child: TextField(
-                  controller: name_controller,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Enter your product name',
-                  ),
-                )),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-                height: 40,
-                child: TextField(
-                  controller: price_controller,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Enter your product price',
-                  ),
-                )),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-                height: 40,
-                child: TextField(
-                  controller: shortdes_controller,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Enter your product short description',
-                  ),
-                )),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-                height: 40,
-                child: TextField(
-                  controller: image_controller,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Enter your product image address',
-                  ),
-                )),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-                height: 40,
-                child: TextField(
-                  controller: size_controller,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Enter your product size',
-                  ),
-                )),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-                height: 40,
-                child: TextField(
-                  controller: availablestock_controller,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Enter your product available stock',
-                  ),
-                )),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-                height: 40,
-                child: TextField(
-                  controller: category_controller,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Enter your product category men/women',
-                  ),
-                )),
-            SizedBox(
-              height: 25,
-            ),
-            Container(
-              padding: EdgeInsets.only(bottom: 15),
-              child: SizedBox(
-                height: 40,
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    addNewProduct();
-                  },
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.only(top: 5, left: 25, right: 25),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                height: 100,
+                width: 100,
+                child: Image.asset("images/logoB.png"),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Container(
+                  alignment: Alignment.topLeft,
                   child: Text(
-                    "Add Product",
+                    "Add Products",
                     style: TextStyle(
-                      fontFamily: "Gilroy-Bold",
+                      fontFamily: "Gilroy-Black",
                       fontSize: 15,
-                      color: Colors.white,
                     ),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    shape: StadiumBorder(),
-                    backgroundColor: Colors.black,
+                  )),
+              Container(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    "Add your latest product from your store to sell",
+                    style: TextStyle(
+                        fontFamily: "Gilroy-Medium",
+                        fontSize: 15,
+                        color: Colors.grey),
+                  )),
+              SizedBox(
+                height: 15,
+              ),
+              Container(
+                  height: 40,
+                  child: TextField(
+                    controller: id_controller,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Enter your product id',
+                    ),
+                  )),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                  height: 40,
+                  child: TextField(
+                    controller: name_controller,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Enter your product name',
+                    ),
+                  )),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                  height: 40,
+                  child: TextField(
+                    controller: price_controller,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Enter your product price',
+                    ),
+                  )),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                  height: 40,
+                  child: TextField(
+                    controller: shortdes_controller,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Enter your product short description',
+                    ),
+                  )),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                  height: 40,
+                  child: TextField(
+                    controller: image_controller,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Enter your product image address',
+                    ),
+                  )),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                  height: 40,
+                  child: TextField(
+                    controller: size_controller,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Enter your product size',
+                    ),
+                  )),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                  height: 40,
+                  child: TextField(
+                    controller: availablestock_controller,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Enter your product available stock',
+                    ),
+                  )),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                  height: 40,
+                  child: TextField(
+                    controller: category_controller,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Enter your product category men/women',
+                    ),
+                  )),
+              SizedBox(
+                height: 25,
+              ),
+              Container(
+                padding: EdgeInsets.only(bottom: 15),
+                child: SizedBox(
+                  height: 40,
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      addNewProduct();
+                    },
+                    child: Text(
+                      "Add Product",
+                      style: TextStyle(
+                        fontFamily: "Gilroy-Bold",
+                        fontSize: 15,
+                        color: Colors.white,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      shape: StadiumBorder(),
+                      backgroundColor: Colors.black,
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
